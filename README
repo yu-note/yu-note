@@ -63,6 +63,14 @@ vim
 5.  ：q！ # 强行退出
 6.  history # 历史操作
 7.  unzip   # 解压
+                      获取key
++   cd
++   ssh-keygen
++   一路回车
++   cd .ssh
++   ls    #  id-rsa  id-rsa.pub
++   vim id-rsa.pub
+
 
                    c 语言
 
