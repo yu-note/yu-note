@@ -24,10 +24,10 @@ Ctrl  PgDn /PgUp   换标签
              d   剪切
              p(小)   往下粘贴
              P       往上粘贴
-+
+             y   复制 
 +整体缩进几行代码： shift+v (可视行模式)
                     shift+v用j 或 k
-+
+
 +首先用可视行模式选中这几行,然后 `shift + >`,'shift + <'
  
 
@@ -52,7 +52,7 @@ vim
 +    ls -a   # . .. .git 
 +    touch hello  # hello 在hhh里
 +    git add hello
-+    git -a -m "first versiom"
++    git commit -a -m "first versiom"  #第一个版本
 +    tig
 
                        7 20
