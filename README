@@ -63,7 +63,49 @@ vim
 5.  ：q！ # 强行退出
 6.  history # 历史操作
 7.  unzip   # 解压
-                      获取key
+8.  :wq
+9.  :wqa
+                       ref
+                      
++    http://happypeter.github.com/LGCB/
++    http://billie66.github.com/TLCL/book/
+
+                       tar
++    http://www.happypeter.org/posts/10
+
+                      translation
++    http://dict.youdao.com/
+
+                      github
+
++    http://www.happypeter.org/posts/21
+                      tar
+
++    http://www.happypeter.org/posts/10
+
+
+  关于压缩和解压，以下几种情况最常见:
+
+1.将名为dir的文件夹压缩为 .tar.gz的包：
+
+   tar zcvf  dir.tar.gz dir
+
+   相应的解压命令：
+
+   tar zxvf dir.tar.gz
+2.将名为dir的文件夹压缩为 .tar.bz2的包：
+
+    tar jcvf dir.tar.bz2 dir
+
+    相应的解压命令：
+
+    tar jxvf dir.tar.bz2
+
+    当然以上过程也个以用tar, bunzip2, gunzip, 分别分为多步完成，但是>一般不用，太麻烦，所以也不用记。以上的压缩方式，实际中只需记住一种>就够用了，但是解压方式两种都要死记硬背下来，因为太常用了。
+
+
+
+                     获取key
 +   cd
 +   ssh-keygen
 +   一路回车
@@ -136,15 +178,54 @@ vim
 +   source .bashrc  #相当于把 .bashrc 里的全运行一遍
   vim 配置文件
 +   vim .vimrc
-        set hidden
+    map <tab> :bn<cr>
+    map jj <esc>
+    map ,ss :set spell<cr>
+    set hidden
 	set autoindent  “回车时与上一行对齐”
 	set expandtab  ''把 Tab 展开成空格“
 	set tabstop=4   ”让Tab 占4个空格“
 	set shiftwidth=4 “缩进4个空格，不是8个。”
+    set dictionary=/usr/share/dict/words  "在.c文件里只检查注释"
   在vim 文件里怎么查找
 +   /***
 +   小写n.
+                  怎么回到上一版
+
++   git checkout 版本号    #  就可以回到此版本
++   git checkout master    #  再切回来
++   git checkout 版本号 -b 定义一个新名
++   git branch
++   git checkout 新名      #  就可以回到此版本
++   git checkout -D 名     #  删除
++   现有master 分支，在做一个备份， git checkout -b tmp.
+
+                  怎么把已经git push到网上的垃圾版本在改回去
+
++   git revert HEAD
+
++   如果没git push，用git throw就可以了。（可以查看vim .gitconfig）
+
++   卸载： sudo apt-get purge ***
 
 
+                       where are you ?
+
++   which     #  which - locate a command 。只能定位系统上的命令  eg : which git ,which ls .
++   locat     #  locate - find files by name。 只能找到老文件，不能
+找到新文件。
+                 他在自己的数据库里查找，一段时间才更新    但在系统
+                 上查找会比较慢。
++   find      #  find - search for files in a directory hierarchy >查找特定文件夹
+                 里面的字符，find ***|grep ***. eg :  fint liuyu-projects|grep m .
++   ps aux |grep ***    #   eg : ps aux|grep firefox.
+                             kill 进程号，退出。kill -9 进程号，强行退出。
 
 
+(1)git clone https://github.com/happypeter/hen.git
+   ~/hen/search/curse$ make
+   ~/hen/search/curse$ sudo make install
+(2) snipMate  在Google 中搜索——》下载——》当前文件下解压。
+(3) gource
+(4) new ***   # 同时打开两个，横
+(5) vnew ***  # 同时打开两个，竖
