@@ -232,7 +232,27 @@ vim
 
        数据类型
 
++   最小的储存单位为位（bit），一个字节均为八位。
++   变量赋值，(1) 直接赋值，int a;
+                              a = 5;
+               (2)  声明语句中初始化变量，int a = 5;
+               (3)  通过scanf()函数为变量赋值。
++   格式输出
+    #include(stdio.h)
+    int main (void)
+    {
+        int a = 100;
+        printf("%d %o %x",a,a,a);
+        printf("%d %#o %#x",a,a,a);
+        return 0;
+    }
+    
+    输出
+        100 144 64
+        100 0144 0x64  
 
+
+                                                                                                                                                                                              
 
 
 
