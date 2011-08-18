@@ -311,9 +311,27 @@ verybig = 12345678908642 add not 1942899938  //%ld只显示了后32位的值。
 +   int cost = 12.99；//浮点值转换为整数时，c简单的丢弃小数部分。
     float pi = 3.1415926536; //只能保证前六位是精确的，此式会损失部分精度。
 
++
+    #include <stdio.h>
+    #define PRAISE "liu yu"//主体是字符串必须用双引号括上，无论字符串中有没有空格
+    int main(int argc, const char *argv[])
+    {
+
+          char name[20];
+          char *p;
+          p = name;
+          printf("what is your name?\n");
+          scanf("%s",name);//读入字符串时，遇空白字符（空格（blank），制表符（tab），换行符(newline)）停止读入,
+     //   scanf("%s",p);   //第二个参数是数组只写数组名，不加地址符&，或指针变量，
+
+          printf("%s\n%s\n",name,PRAISE);
+        return 0;
+    }
 
 
 
++   字符和字符串
+    字符‘x’和字符串"x"不同，其中一个区别是‘x’属于基本类型（char），而“x”属于派生类型（char数组）。第二个区别是“x”实际上有两个字符（‘x’和空字符'\0'）组成。
 
 
 
