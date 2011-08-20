@@ -378,7 +378,29 @@ verybig = 12345678908642 add not 1942899938  //%ld只显示了后32位的值。
 
 +   除了%c以外的说明符会自动跳过输入项之前的空格，所以scanf("%d%d",&n,&m)与scanf(" %d%d",&n,&m)的行为是相同的，对于%c来说，则不同，scanf("%c",&ch)读取在输入中遇到的第一个字符，scanf(" %c",&ch)则读取遇到的第一个非空白字符。scanf("%c ",&ch),%c后加空格是不允许的，输入一个字符后，无论你输入多少个空格或回车，它将一直读取空白字符，直到遇到非空白字符为止。虽说第一字符已经存入ch中，但这样的输入是有问题的，最好后面不要加空格。
 
++   scanf()函数的返回值
+    scanf()函数返回成功读入的项目个数，如果它没有读取任何项目（当它期望一个数字而你却键入了一个非数字字符串时就会发生这种情况），scanf（）会返回值0，当它检测到“文件末尾”（edd of file）时，它返回EFO，
 
++
+#include <stdio.h>
+//用*代替数字，来指定字段宽度。
+int main(void)
+{
+    unsigned width,precision;
+    int number = 256;
+    double weight = 242.5;
+
+    printf("what field width?\n");
+    scanf("%d",&width);
+    printf("The number is : %*d\n",width,number);//*在d前，width在number前。
+    printf("Now enter a width add a precision:\n");
+    scanf("%d %d",&width,&precision);
+    printf("Width = %*.*f\n",width,precision,weight);
+    
+    return 0;
+
+}
+    
 
 
 
