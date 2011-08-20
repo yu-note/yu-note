@@ -401,6 +401,19 @@ int main(void)
 
 }
     
+   *************************************************************************
+#include <stdio.h>
+//*用在scanf()函数中，把它放在%和说明符字母之间时，它使函数跳过相应的输入项目>。
+int main(int argc, const char *argv[])
+{
+    int n;
+
+    printf("please enter three integers:\n");
+    //跳过两个数，把第三个数赋给n。
+    scanf("%*d %*d %d",&n);//注意第三个没有*。
+    printf("The last integers was %d\n",n);
+    return 0;
+}//如果程序需要读取一个文件中某个特定的列（该文件的数据以统一的列排列），那么>该功能将非常有用。
 
 
 
