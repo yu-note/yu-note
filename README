@@ -561,5 +561,89 @@ int main(int argc, const char *argv[])
 
 
 
++   只要while循环的判断条件的值为非零，它就可以执行循环，这使得判断条件建立在数值的基础上而不是在真/假的基础上，要谨记如果关系为真，它的值就为1；如果为假它的值就为零。
+
++   如果进行比较的双方中有一个是常量，则可把它放在比较表达式的左边，这样做有助于发现错误。5 == canost。
+
++   for()
+    1 可以使用减量运算符来减小计数器而不是增加它。
+      for(i=5;i>0;i--)
+      {... ...}
+    2 如果需要，可以让计数器依次加2，加10，等等。
+      for(i=0;i<60;i+=2)
+      {... ...}
+    3 可以用字符代替数字来进行计算。
+      for(ch='a';ch<='z';ch++)//字符是已整数的形式储存的，实际上也是用整数计算的。
+      {... ...}
+    4 可以判断迭代次数之外的条件。
+      for(num=1;num*num*num<1000;num++)//不知道循环次数的
+      {... ...}
+    5 可以让数量几何增加，而不是算数增加。
+      for(debt=100.0;debt<150.0;debt*=1.1)//每次增加10% 。
+      {... ...}
+    6 在第三个表达式中，可以使用所需的任何合法表达式，无论使用的是什么，每次循环中都会得到更新。
+      for(x=1;y<=75;y=(++x*5)+50)
+      {printf("%10d %10d",x,y);}
+    7 可以让一个或多个表达式为空，但不能遗漏分号。只需确保循环中包含了一些能使循环最终结束的语句。
+      for(n = 3 ; ans <= 25;)
+       ans = ans * n;
+    8 第一个表达式不必初始化一个变量，它也可以是某种类型的printf()语句，第一个表达式只在执行循环的其他部分之前求值或执行一次。
+#include <stdio.h>
+int main(void)
+{
+    int k;
+
+    for(k = 1,printf ("%d:Hi!\n",k);printf("k = %d\n",k),k*k < 26;k+=2,printf("now k is %d\n",k))
+    {
+       printf("k is %d in the loop\n",k);
+    }
+    return 0;
+}
+ 
+  输出为：
+1:Hi!
+k = 1
+k is 1 in the loop
+now k is 3
+k = 3
+k is 3 in the loop
+now k is 5
+k = 5
+k is 5 in the loop
+now k is 7
+k = 7
+//for循环中第一个表达式只执行一次，再第二个表达式判断是否为真，为真，执行循环体，然后计算第三个表达式，继续第二个表达式进行判断。
+
++   do while循环至少执行一次，因为在循环体被执行之后才进行判断。
+   #include"stdio.h"
+   int main(void)
+   {
+      const int secret_code = 13;
+      int code_entered;
+      do
+      {   
+          printf("To enter the triskaidekaphobia therapy club,\n");
+          printf(plesae entr the secret code number:\n);
+          scanf("%d",&code_entered);
+    
+      }while(code_entered != secret_code);
+
+      printf("Congratulations!you are cured!\n");
+      return 0;
+
+    }
+
+
++   scanf("%lf",&a[2]),//正确用法，lf打印浮点型，a[2]是一个值，&a[2]是它内存中的位置。
+
+
+
+
+
+
+
+
+
+
 
 
