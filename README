@@ -381,6 +381,51 @@ verybig = 12345678908642 add not 1942899938  //%ld只显示了后32位的值。
 +   scanf()函数的返回值
     scanf()函数返回成功读入的项目个数，如果它没有读取任何项目（当它期望一个数字而你却键入了一个非数字字符串时就会发生这种情况），scanf（）会返回值0，当它检测到“文件末尾”（edd of file）时，它返回EFO，
 
+#include <stdio.h>
+//每次输入num的值，加到sum上，
+int main(int argc, const char *argv[])
+{
+
+    long num;
+    long sum = 0l;
+    int status ;
+    
+    printf("please enter an integer ");
+    printf("(q to quit):");
+
+    status = scanf("%ld",&num);
+    while(status == 1)  //利用scanf()函数返回值控制循环，
+    {
+          sum = sum + num ;
+          printf("please enter next integer (q to quit): ");
+          status = scanf("%ld",&num);
+    }
+    printf("sum = %ld\n",sum);
+    return 0;
+}
+  
+可改写成这样
+#include <stdio.h>
+int main(int argc, const char *argv[])
+{
+
+    long num;
+    long sum = 0l;
+    printf("please enter an integer ");
+    printf("(q to quit):");
+    while(1 == scanf("%ld",&num))
+    {
+          sum = sum + num ;
+          printf("please enter next integer (q to quit): ");
+
+    }
+    printf("sum = %ld\n",sum);
+    return 0;
+}
+
+          
+  **********************************************************************
+
 +
 #include <stdio.h>
 //用*代替数字，来指定字段宽度。
@@ -416,8 +461,103 @@ int main(int argc, const char *argv[])
 }//如果程序需要读取一个文件中某个特定的列（该文件的数据以统一的列排列），那么>该功能将非常有用。
 
 
+   ************************************************************************
+    运算符                     
+
++   c没有指数运算符，标准c的数学库提供了一个pow（）函数，例如，pow(3.5,2.2)返回3.5的2.2次幂。函数原型double pow (double x,double y).
++   计算机不能用整数去除浮点数，编译器先把整数转换成浮点数，再去运算。
++   当运算符共享一个操作数时，优先级规定了求值顺序。() -> 正号和负号-> *和/ ->+和— —> = .
++   c有一个typedef机制，为一个已有的类型创建一个别名。例如 typedef double real.real 就是double的别名，可以用它定义变量，real a ；
++   / 运算符两侧的数，同号为正异号为负，% 运算符，与第一个操作数相同。
++   i = 1;
+    while(i<5)
+    {
+    
+      i++;
+
+    }
+    可改写成
+    i = 1;
+    while(i++ < 5)
+    {
+    
+    
+    }
 
 
++   当n++是表达式的一部分时，可以认为它表示“先使用n，在使其值加一”，另一方面++n的意思是，“先将n值增加，再使用它”。例如：
+                                       int y = 2;
+                                       int n = 3;
+                                       nextnum = (y + n++)*6;
+                                       //nextnum = (2 + 3) * 6.
++   （1）用while循环打印整数和它的平方
+
+    while(num < 11)
+    {
+        printf("%10d %10d",num,num*num++);
+    }
+    //结果并不是如我们想向那样，因为在c中，编译器可以选择先计算函数里那个参数的值。这个自由度提高了编译器的效率，但在函数参数里使用了增量运算符会带来麻烦。
++   （2）ans = num/2 = 5 * (1 + num++);
+         y = n++ + n++;
+    // 这两个语句都是右争议的。
+怎么避免这些问题：
+    1》如果一个变量出现在同一个函数的多个参数中时，不要将增量或者减量运算符用于它上面。
+    2》当一个变量多次出现在同一个表达式里时，不要将增量或者减量运算符用于它上面。
+
++   int sum = 0；
+    while(sum++ < 5)  
+    {
+         printf("%d",sum);
+    
+    }
+    //括号中的sum++ < 5就是表达式，所以sum的值在使用printf()函数前增加，打印的第一个值为1。
+
+
++   类型级别从高到低的顺序是long double , double ,float ,unsigned long ,long long,unsigned long ,long ,unsigned int,int ,一个可能的例外是当long和int具有相同大小时，此时unsigned int 比long的级别更高。
+
++   (type)指派运算符 ，它将跟在它后面的值转换成由圆括号中的关键字所指定的类型
+    int mice;
+    mice = 1.6 + 1.7;               //mice = 3;
+    mice = (int) 1.6 + (int) 1.7;   //mice = 2;
+
++   当char和short类型出现在表达式里或者作为函数的参数时，它们都将被提升为整形，当float类型作为一个函数参数时被提升为double类型。
+
+
+    **************************************************************************
+              
+      while()循环
+
++   while（）循环时，循环中必须包含能改变判断表达式的值来使表达式的值最终变为假。否则循环永远不会终止。实际上，也可以使用break 和if语句来终止循环，这将在后续的章节中介绍。
+     
++   i = 1；
+    while(--i < 5)
+      printf("good morning!\n");
+    //此循环也可以终止，那要等到i减小到比系统可以处理的最小的负数还小并变成最大的可能的整数的时候了。
+
++   使用while时，只有位于判断条件之后的单个语句，才是循环的部分。使用while时记得用{ }.
+
+
++   while()函数判断表达式使用技巧
+    
+    while(number < 6)
+    {
+      printf("your number is too small.\n");
+
+      number++;
+    
+    }
+
+    
+    while(ch != 's')
+    {
+        scanf("%c",&ch);
+    }
+
+
+    while(scanf("%f",&num) == 1)
+    {
+        sum = sum + num ;
+    }   
 
 
 
