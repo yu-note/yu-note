@@ -2,7 +2,7 @@
 
                                   狼 行 天 下
                                       自由  协作  创造
-
+                                            (练习&&时间) == 完美
 1.
 
 Ctrl+shift + t  加标签
@@ -635,6 +635,171 @@ k = 7
 
 
 +   scanf("%lf",&a[2]),//正确用法，lf打印浮点型，a[2]是一个值，&a[2]是它内存中的位置。
+
+
+    ************************************************************************
+
++   if 和 else 之间有多条语句，必须使用花括号创建一个代码块。
++   如果没有花括号指名 else 与最近的 if 配对。
++   if (x > 0)
+        printf("Incrementing x:\n");
+        x++;
+    else
+        printf("x <= 0 \n");
+        //编译器把printf()看做if语句的一部分，把x++；看作单独的语句，而不把它看做if语句的一部分。然后认为else没有所属的if。if...else是一条语句。这也是if else嵌套不加花括号的原因.
+        
+        放松以下：嘎嘎。。。
+#include <stdio.h>
+#define KG ' '
+#define JH '.'
+#define DH ','
+#define GT '!'
+
+// 改变输入，只保留空格。
+int main(int argc, const char *argv[])
+{
+    char ch;
+
+    while((ch = getchar()) != '\n')//读入字符，判断是否一行结束
+    {
+        if((ch == KG)||(ch == JH )||(ch == GT)||(ch == DH)) //如果是空格,逗号，感叹号，句号原样输出
+         putchar(ch);
+        else
+         putchar(ch + 1);//改变其他字符
+
+    }
+
+    putchar(ch);//打印换行符
+    return 0;
+}
+
+对比一下下面两种写法的区别
+
++   count = 0;                       
+    while(count < 10)
+    {
+       ch = getchar();
+       if (ch == '\n')
+         continue;
+         putchar(ch);
+         count++;
+    }
+
+它读入十个字符，换行符除外，因为当ch为换行符时会跳过 count++; 语句。
++   for(count = 0;count < 10;count++)
+     {
+         ch = getchar();
+         if (ch == '\n')
+         continue;
+         putchar(ch);
+     }
+它读入十个字符，换行符也被包括在计数中。
+
++   break, 循环中的break导致循环退出。转到紧接着该循环后的第一条语句去执行。break 用于循环（for,while,do...while）和switch中.
+
++   continue， 跳到下一个循环周期。continue仅用于循环。
+
++   switch，圆括号中的switch判断表达式应该具有整数值，（包括char类型）。case标签必须是整形（包括char） 常量或者整数常量表达式（仅包含整数常量的表达式）。不能用变量作为case标签。
+
++   什么时候该使用switch,而什么时候又该使用if else结构呢，通常是没有选择的，如果选择是基于求一个浮点型变量或表达式的值，就不能使用switch.如果变量必须落入某个范围，也不能很方便的使用switch.
+
++   if(a < x < z) //错误，没有这种逻辑运算符。 
+       ... ...
+
+   ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
++    为什么使用函数
+     1 可以省去重复代码的编写。可以在任何需要的地方调用该函数。
+     2 使程序更加模块化。
+
++   void starbar(void);
+    第一个void指的是函数类型。第二个void表示函数不接受任何参数。分号的作用是表示该语句是进行的函数声明而不是函数定义。
+
++   如果函数没有进行类型声明，则该函数具有默认的函数类型int.
+
++   imin(int n,int m)
+    {
+        if(n < m)
+            return n;      //return(n < m)? n : m;
+        else
+            return m;
+        
+        printf("liuyu!\n");//return语句使printf永远不会执行。
+    
+    }
+
+
++   return;没有返回值，这种形式只能用于void类型中。
+
++   函数声明时的形参名，与定义时的可以不同。
+
++   最简单的递归形式是把递归调用语句放在函数结尾即恰在return语句之前。
+  ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+#include <stdio.h>
+
+void up_and_down(int);
+
+int main(int argc, const char *argv[])
+{
+    up_and_down(1);
+
+    return 0;
+}
+
+void up_and_down(int n)
+{
+   printf("Level %d: n location %p\n",n,&n);
+   if(n < 4)
+       up_and_down(n+1); //递归调用语句不是最后一条语句。
+   printf("Level %d: n location %p\n",n,&n);
+
+}
+//一级函数调用二级函数，二级函数调用三级函数，三级函数调用四级函数，四级函数n>的值为4，if语句不满足，执行printf函数，把控制返回给该函数的调用函数，也就是三>级函数，三级调用函数中前一个执行过的语句是在if语句进行第四级调用，因此，他开始执行printf（）函数。三级调用结束后，第二级调用函数开始执行，打印printf()函数。以此类推，第一级函数打印printf()语句。
+ 输出结果：
+Level 1: n location 0xbf88ddb0
+Level 2: n location 0xbf88dd90
+Level 3: n location 0xbf88dd70
+Level 4: n location 0xbf88dd50
+Level 4: n location 0xbf88dd50
+Level 3: n location 0xbf88dd70
+Level 2: n location 0xbf88dd90
+Level 1: n location 0xbf88ddb0
+
+  ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+#include <stdio.h>
+#include <stdlib.h> //为了使用exit
+
+int main(int argc, const char *argv[])
+{
+    FILE *fp;
+    char fname[30];//存放文件名
+    char ch;
+
+    printf("Enter the name of the file:\n");
+    scanf("%s",fname);
+    fp = fopen (fname,"r");//打开文件以供提取
+    if(fp == NULL)//尝试打开文件失败
+      {
+        printf("Failed to open file.Bye\n");
+        exit(1);
+      }
+    while((ch = getc(fp)) != EOF)
+      putchar(ch);
+
+    if(fclose(fp) != 0);//关闭文件
+        printf("Error in closing file %s\n",fname)  ;
+  return 0;
+}
+
+//fopen 第一个参数是要打开的文件名，或包含该文件名的地址。第二个参数文件打开模式。
+//fclose 函数，文件关闭成功，返回0；否则返回EFO。
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+
 
 
 
